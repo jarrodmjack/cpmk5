@@ -25,5 +25,15 @@ class TimePunchAPIView(viewsets.ModelViewSet):
 
     def update(self, request, pk):
         timepunch = TimePunch.objects.get(id=pk)
+        is_paid = timepunch.paid
+        timepunch.paid = not is_paid
+        timepunch.save()
         serializer = TimePunchSerializer(timepunch)
-        print('data: ', serializer.data)
+        return Response(serializer.data, status=200)
+    
+    def destroy(self, request, pk):
+        timepunch = TimePunch.objects.get(id=pk)
+        if timepunch:
+            timepunch.delete()
+            return Response(status=200)
+        return Response(status=400)
