@@ -14,7 +14,7 @@ const TimePunchForm: React.FC<TimePunchFormProps> = ({ createTimePunch, employee
     const [location, setLocation] = useState('Office')
     const [start_time, setStartTime] = useState('')
     const [end_time, setEndTime] = useState('')
-
+    console.log('ep name: ', employee_name)
     return (
         <div className=''>
             <form
@@ -34,18 +34,21 @@ const TimePunchForm: React.FC<TimePunchFormProps> = ({ createTimePunch, employee
                             required
                             className="select select-bordered w-full max-w-xs"
                             onChange={(e) => {
-                                switch (e.target.value) {
-                                    case 'Christine':
+                                console.log('target value: ', e.target.value)
+                                const name = e.target.value.toLowerCase()
+                                switch (name) {
+                                    case 'christine':
                                         setEmployeeId(1)
                                         setEmployeeName('Christine')
-                                    case 'Karen':
+                                        break;
+                                    case 'karen':
                                         setEmployeeId(2)
                                         setEmployeeName('Karen')
-                                    default:
-                                        return
+                                        break;
                                 }
                             }}
                             value={employee_name}
+                            defaultValue={''}
                         >
                             <option disabled selected>Employee Name</option>
                             {employeeList.map((employee: Employee, i) => (
