@@ -3,5 +3,3 @@ timepunch post is working - still getting console error failedtoFetch, however I
 implement "Mark as paid" feature
 - put or patch request and just update that specific timepunch id's "Paid" field to true or false 
 implement "delete" punch feature
-
-commit changes and clone this to new repo to put all the code from this project into that project but remove the nested .git folder in the front or backend and have one single git folder
