@@ -34,7 +34,6 @@ const TimePunchForm: React.FC<TimePunchFormProps> = ({ createTimePunch, employee
                             required
                             className="select select-bordered w-full max-w-xs"
                             onChange={(e) => {
-                                console.log('target value: ', e.target.value)
                                 const name = e.target.value.toLowerCase()
                                 switch (name) {
                                     case 'christine':
