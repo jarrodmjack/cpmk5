@@ -4,9 +4,10 @@ import { TimePunch } from '@/types/TimePunchTypes'
 type TimePunchTableRowOwnProps = {
     timePunch: TimePunch
     handleMarkAsPaid: (timePunchId: number) => void
+    handleDelete: (timePunchId: number) => void
 }
 
-const TimePunchTableRow: React.FC<TimePunchTableRowOwnProps> = ({ timePunch, handleMarkAsPaid }) => {
+const TimePunchTableRow: React.FC<TimePunchTableRowOwnProps> = ({ timePunch, handleMarkAsPaid, handleDelete }) => {
     return (
         <tr className='hover'>
             <td>{timePunch.employee_name}</td>
@@ -25,9 +26,9 @@ const TimePunchTableRow: React.FC<TimePunchTableRowOwnProps> = ({ timePunch, han
             <td>
                 {timePunch.hours_worked}
             </td>
-            <td
-                // onClick={() => handleDelete(timePunch._id)}
-            >DEL</td>
+            <td onClick={() => handleDelete(timePunch.id!)}>
+                DEL
+            </td>
         </tr>
     )
 }

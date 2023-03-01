@@ -22,6 +22,20 @@ const handleMarkAsPaid = async (timePunchId: number) => {
     }
 }
 
+const handleDeleteTimePunch = async (timePunchId: number) => {
+    try {
+        await fetch(`http://localhost:8000/timepunch/${timePunchId}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ timePunchId })
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 const TimePunchTableDisplay: React.FC<TimePunchTableDisplayOwnProps> = ({ timePunches }) => {
 
     return (
@@ -30,7 +44,7 @@ const TimePunchTableDisplay: React.FC<TimePunchTableDisplayOwnProps> = ({ timePu
                 <TimePunchTableHeader />
                 <tbody>
                     {timePunches && timePunches.map((timePunch, i) => (
-                        <TimePunchTableRow handleMarkAsPaid={handleMarkAsPaid} key={i} timePunch={timePunch} />
+                        <TimePunchTableRow handleDelete={handleDeleteTimePunch} handleMarkAsPaid={handleMarkAsPaid} key={i} timePunch={timePunch} />
                     ))}
                 </tbody>
 

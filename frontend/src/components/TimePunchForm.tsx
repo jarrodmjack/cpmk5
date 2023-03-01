@@ -14,7 +14,7 @@ const TimePunchForm: React.FC<TimePunchFormProps> = ({ createTimePunch, employee
     const [location, setLocation] = useState('Office')
     const [start_time, setStartTime] = useState('')
     const [end_time, setEndTime] = useState('')
-    console.log('ep name: ', employee_name)
+
     return (
         <div className=''>
             <form

@@ -15,7 +15,6 @@ class TimePunchAPIView(viewsets.ModelViewSet):
     serializer_class = TimePunchSerializer
 
     def create(self, request):
-        print(request.data)
         serializer = TimePunchSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
