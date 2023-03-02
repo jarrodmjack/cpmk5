@@ -5,6 +5,7 @@ import { calculateTimeDifference } from '@/utils/calculateTimeDifference'
 import TimePunchForm from '@/components/TimePunchForm'
 import TimePunchTableDisplay from '@/components/TimePunchTableDisplay'
 import Header from '@/components/Header'
+import TimePunchDateFilter from '@/components/TimePunchDateFilter'
 
 interface Timepunches extends Array<TimePunch> { }
 interface Employees extends Array<Employee> { }
@@ -43,9 +44,6 @@ export default function Home() {
         handleFetchEmployees()
     }, [])
 
-    console.log('tps: ', timePunches)
-
-
     const handleCreateTimepunch = async (timePunchData: TimePunch) => {
         const hoursWorked = calculateTimeDifference(timePunchData.start_time, timePunchData.end_time)
         const employeeId = timePunchData.employee_id
@@ -82,11 +80,29 @@ export default function Home() {
         }
     }
 
+    const handleFilterTimePunches = (e: any, fromDate: any, toDate: any) => {
+
+        e.preventDefault()
+
+        fromDate = new Date(fromDate)
+        toDate = new Date(toDate)
+
+        setTimePunches(timePunches.filter((timepunch) => {
+            
+            let timepunchDate = new Date(timepunch.date)
+            
+            if(timepunchDate <= toDate && timepunchDate >= fromDate){
+                return timepunch
+            }
+        }))
+    }
+
     return (
         <main className='border mx-auto container'>
             <Header menuItems={[]} />
             <div className='flex flex-col border gap-10'>
                 <TimePunchForm createTimePunch={handleCreateTimepunch} employeeList={employeeList} />
+                <TimePunchDateFilter handleFilterTimePunches={handleFilterTimePunches} />
                 <TimePunchTableDisplay timePunches={timePunches} />
             </div>
         </main>

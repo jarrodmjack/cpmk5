@@ -16,7 +16,7 @@ const TimePunchForm: React.FC<TimePunchFormProps> = ({ createTimePunch, employee
     const [end_time, setEndTime] = useState('')
 
     return (
-        <div className=''>
+        <div>
             <form
                 onSubmit={() => createTimePunch({
                     employee_id,
