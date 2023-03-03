@@ -44,6 +44,8 @@ export default function Home() {
         handleFetchEmployees()
     }, [])
 
+
+
     const handleCreateTimepunch = async (timePunchData: TimePunch) => {
         const hoursWorked = calculateTimeDifference(timePunchData.start_time, timePunchData.end_time)
         const employeeId = timePunchData.employee_id
@@ -81,7 +83,6 @@ export default function Home() {
     }
 
     const handleFilterTimePunches = (e: any, fromDate: any, toDate: any) => {
-
         e.preventDefault()
 
         fromDate = new Date(fromDate)
