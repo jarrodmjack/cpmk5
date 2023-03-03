@@ -10,9 +10,9 @@ type TimePunchTableDisplayOwnProps = {
 
 const TimePunchTableDisplay: React.FC<TimePunchTableDisplayOwnProps> = ({ timePunches }) => {
 
-    const componentRef = useRef()
+    const componentRef = useRef(null)
     const handlePrint = useReactToPrint({
-        content: () => componentRef.current,
+        content: () => componentRef.current!,
         documentTitle: 'timepunch-data',
     })
 
